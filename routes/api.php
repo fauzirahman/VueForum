@@ -7,7 +7,8 @@ Route::post('/like/{reply}','LikesController@likeIt');
 Route::delete('/like/{reply}','LikesController@unLikeIt');
 Route::post('/auth/register', 'AuthController@register');
 Route::post('/auth/signup', 'AuthController@signup');
-
+Route::post('/notifications', 'NotificationController@index');
+Route::post('/markAsRead', 'NotificationController@markAsRead');
 Route::group([
 
     'middleware' => 'api',

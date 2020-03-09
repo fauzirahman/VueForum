@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Model\Reply;
 use App\Model\Question;
+use App\Notifications\NewReplyNotification;
 
 
 class ReplyController extends Controller
@@ -36,6 +37,11 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
         $reply = $question->replies()->create($request->all()) ;
+        $user = $question->user;
+        if($reply->user_id !== $question->user_id){
+            $user->notify(new NewReplyNotification($reply));
+        }
+        
         return Response(['reply'=> new ReplyResource($reply)], 201);
     }
 
@@ -57,9 +63,11 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        // $reply->update($request->all());
+        $reply = $question->replies()->update($request->all()) ;                
+        return response('update', 202);
     }
 
     /**
