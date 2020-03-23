@@ -53,9 +53,9 @@
             }
         },
         created(){
-            if(!User.admin()){
-                this.$router.push('/forum')
-            }
+            // if(!User.admin()){
+            //     this.$router.push('/forum')
+            // }
            axios.get('/api/category')
            .then(res => this.categories = res.data.data)
         },

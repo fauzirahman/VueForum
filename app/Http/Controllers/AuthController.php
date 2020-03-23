@@ -81,6 +81,7 @@ class AuthController extends Controller
     {
         return response()->json(auth()->user());
     }
+    
 
     /**
      * Log the user out (Invalidate the token).
