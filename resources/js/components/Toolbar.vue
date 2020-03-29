@@ -5,11 +5,10 @@
     <v-spacer></v-spacer>
     <app-notification v-if="loggedIn"></app-notification>
     <div class="hidden-sm-and-down" >      
-      <router-link 
+      <router-link v-if="item.show"
       v-for="item in items"
       :key="item.title"
-      :to="item.to"   
-      v-if="item.show"   
+      :to="item.to"            
      >
         <v-btn flat>{{item.title}}</v-btn>
       </router-link>

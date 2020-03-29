@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'App\Events\LikeEvents' => [
-            'App\Listener\LikeEventsListener'
+            'App\Listeners\LikeEventListener'
         ]
     ];
 
